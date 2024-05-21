@@ -1,9 +1,21 @@
 Package: horoscoper
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+Authors@R:
+    c(person(first = "Ashley",
+           last = "Ibarra",
+           role = c("aut", "cre"),
+           email = "aibarr21@calpoly.edu"),
+      person(first = " ",
+           last= " ",
+           role = c("aut","cre"),
+           email = "first.last@example.com"),
+      person(first = " ",
+           last= " ",
+           role = c("aut","cre"),
+           email = "first.last@example.com")
+           )
+
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
