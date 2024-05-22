@@ -10,10 +10,10 @@ Authors@R:
            last= "Ioffe ",
            role = c("aut","cre"),
            email = "first.last@example.com"),
-      person(first = " ",
-           last= " ",
+      person(first = "Kai",
+           last= "Easley",
            role = c("aut","cre"),
-           email = "first.last@example.com")
+           email = "keasley@calpoly.edu")
            )
 
 Description: What the package does (one paragraph).
