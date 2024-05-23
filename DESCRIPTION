@@ -2,20 +2,19 @@ Package: horoscoper
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R:
-    c(person(first = "Ashley",
-           last = "Ibarra",
+    c(person(given = "Ashley",
+           family = "Ibarra",
            role = c("aut", "cre"),
            email = "aibarr21@calpoly.edu"),
-      person(first = "Rebecca ",
-           last= "Ioffe ",
-           role = c("aut","cre"),
+      person(given = "Rebecca",
+           family = "Ioffe ",
+           role = c("aut"),
            email = "first.last@example.com"),
-      person(first = "Kai",
-           last= "Easley",
-           role = c("aut","cre"),
+      person(given = "Kai",
+           family = "Easley",
+           role = c("aut"),
            email = "keasley@calpoly.edu")
            )
-
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
