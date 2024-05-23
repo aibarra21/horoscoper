@@ -4,10 +4,22 @@
 #' @param zodiac the person's zodiac sign
 #' @importFrom rvest read_html html_node html_text
 #' @importFrom stringr str_replace_all str_trim
-#' @importFrom dplyr bind_rows
 #' @return A horoscope string
 #'
 
+# function that prints out the sign and horoscope that is wanted
+
+getdailyhoroscope <- function(zodiacsign) {
+
+    if (zodiacsign %in% horoscope_data$sign) {
+    daily <- horoscope_data[horoscope_data$sign == zodiacsign, "horoscope"]
+    cat("Sign:", zodiacsign, "\nDaily Horoscope:", daily) #prints wanted sign and horoscope
+  }
+
+  else {
+    cat("Invalid zodiac sign. Please capatilize and try again.\n")  #if spelled wrong or capitalized then print error
+  }
+}
 
 
 # helper function to get only one horoscope by webscrapping horoscope.com
