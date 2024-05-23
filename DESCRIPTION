@@ -8,11 +8,11 @@ Authors@R:
            email = "aibarr21@calpoly.edu"),
       person(given = "Rebecca",
            family = "Ioffe ",
-           role = c("aut"),
+           role = c("aut","cre"),
            email = "first.last@example.com"),
       person(given = "Kai",
            family = "Easley",
-           role = c("aut"),
+           role = c("aut","cre"),
            email = "keasley@calpoly.edu")
            )
 Description: What the package does (one paragraph).
