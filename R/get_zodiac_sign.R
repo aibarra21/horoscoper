@@ -8,11 +8,9 @@
 #' @export
 #'
 
-# function that prints out the sign and horoscope that is wanted
 
 
 url <- "https://www.horoscope.com/us/index.aspx"
-
 website <- read_html(url)
 
 
