@@ -2,16 +2,16 @@ Package: horoscoper
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R:
-    c(person(first = "Ashley",
-           last = "Ibarra",
+    c(person(given = "Ashley",
+           family = "Ibarra",
            role = c("aut", "cre"),
            email = "aibarr21@calpoly.edu"),
-      person(first = "Rebecca",
-           last= "Ioffe ",
+      person(given = "Rebecca",
+           family = "Ioffe ",
            role = c("aut","cre"),
            email = "first.last@example.com"),
-      person(first = "Kai",
-           last= "Easley",
+      person(given = "Kai",
+           family = "Easley",
            role = c("aut","cre"),
            email = "keasley@calpoly.edu")
            )
