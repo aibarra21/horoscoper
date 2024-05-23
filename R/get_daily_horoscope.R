@@ -7,6 +7,7 @@
 #' @return A horoscope string
 #'
 
+library(dplyr)
 # function that prints out the sign and horoscope that is wanted
 
 getdailyhoroscope <- function(zodiacsign) {
@@ -17,9 +18,10 @@ getdailyhoroscope <- function(zodiacsign) {
   }
 
   else {
-    cat("Invalid zodiac sign. Please capatilize and try again.\n")  #if spelled wrong or capitalized then print error
+    cat("Invalid zodiac sign. Please capatilize and try again.")  #if spelled wrong or capitalized then print error
   }
 }
+
 
 
 # helper function to get only one horoscope by webscrapping horoscope.com
