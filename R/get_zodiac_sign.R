@@ -1,4 +1,14 @@
-library(lubridate)
+#' Gives zodiac sign
+#'
+#'
+#' @param user_date the person's birthday
+#' @importFrom rvest read_html
+#' @importFrom lubridate mdy month day
+#' @return the zodiac sign
+#' @export
+#'
+
+# function that prints out the sign and horoscope that is wanted
 
 
 url <- "https://www.horoscope.com/us/index.aspx"
