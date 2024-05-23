@@ -6,7 +6,7 @@ Authors@R:
            last = "Ibarra",
            role = c("aut", "cre"),
            email = "aibarr21@calpoly.edu"),
-      person(first = "Rebecca ",
+      person(first = "Rebecca",
            last= "Ioffe ",
            role = c("aut","cre"),
            email = "first.last@example.com"),
@@ -15,7 +15,6 @@ Authors@R:
            role = c("aut","cre"),
            email = "keasley@calpoly.edu")
            )
-
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
