@@ -4,6 +4,7 @@
 #' @param zodiac the person's zodiac sign
 #' @importFrom rvest read_html html_node html_text
 #' @importFrom stringr str_replace_all str_trim
+#' @importFrom dplyr bind_rows
 #' @return A horoscope string
 #'
 
@@ -28,6 +29,23 @@ get_onedaily_horoscope <- function(page_number){
   horoscope_info <- data.frame(sign, daily_horoscope[1])   #putting into dataframe
   names(horoscope_info) <- c("sign","horoscope")
   return(horoscope_info) # return that sign
+}
+
+
+# Building data frame with all 12 zodiac signs and their respective daily horoscopes
+
+horoscope_data <- data.frame(sign = character(),
+                             horoscope = character(),
+                             stringsAsFactors = FALSE) #creating empty dataframe
+for (sign in 1:12){
+  horoscope_infor <- get_onedaily_horoscope(sign) #looping thru and getting each of 12 signs
+
+  horoscope_infor <- as.data.frame(lapply(horoscope_infor, stringr::str_trim),
+                                   stringsAsFactors = FALSE) # trimming whitespace
+
+  horoscope_data <- rbind(horoscope_data, horoscope_infor) #adding sign to dataframe
+
+  Sys.sleep(1) #adding a one second pause to not overload server
 }
 
 
