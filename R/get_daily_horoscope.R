@@ -11,7 +11,7 @@
 
 getdailyhoroscope <- function(zodiacsign) {
 
-    if (zodiacsign %in% horoscope_data$sign) {
+  if (zodiacsign %in% horoscope_data$sign) {
     daily <- horoscope_data[horoscope_data$sign == zodiacsign, "horoscope"]
     cat("Sign:", zodiacsign, "\nDaily Horoscope:", daily) #prints wanted sign and horoscope
   }
@@ -59,5 +59,3 @@ for (sign in 1:12){
 
   Sys.sleep(1) #adding a one second pause to not overload server
 }
-
-
