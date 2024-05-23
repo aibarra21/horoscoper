@@ -7,12 +7,12 @@ Authors@R:
            role = c("aut", "cre"),
            email = "aibarr21@calpoly.edu"),
       person(given = "Rebecca",
-           family = "Ioffe ",
-           role = c("aut","cre"),
+           family = "Ioffe",
+           role = c("aut"),
            email = "first.last@example.com"),
       person(given = "Kai",
            family = "Easley",
-           role = c("aut","cre"),
+           role = c("aut"),
            email = "keasley@calpoly.edu")
            )
 Description: What the package does (one paragraph).
