@@ -1,6 +1,5 @@
 #' Gives zodiac sign
 #'
-#'
 #' @param user_date the person's birthday
 #' @importFrom rvest read_html
 #' @importFrom lubridate mdy month day
@@ -9,18 +8,12 @@
 #'
 
 
-
-url <- "https://www.horoscope.com/us/index.aspx"
-website <- read_html(url)
-
-
-
 get_zodiac_sign <- function(user_date){
 
-  date <- mdy(user_date)
+  date <- lubridate::mdy(user_date)
 
-  month <- month(date)
-  day <- day(date)
+  month <- lubridate::month(date)
+  day <- lubridate::day(date)
 
   if((month == 1 && day >= 20 || month == 2 && day <= 18))
     return("Your zodiac sign is Aquarius")
@@ -85,3 +78,5 @@ get_zodiac_sign <- function(user_date){
   }
 
 }
+
+
