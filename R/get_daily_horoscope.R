@@ -1,13 +1,13 @@
 #' Tells a daily horoscope
 #'
-#'
 #' @param zodiac the person's zodiac sign
 #' @importFrom rvest read_html html_node html_text
 #' @importFrom stringr str_replace_all str_trim
 #' @return A horoscope string
 #' @export
 #'
-#' function that prints out the sign and horoscope that is wanted
+#' @examples
+#' getdailyhoroscope("Aries")
 
 getdailyhoroscope <- function(zodiacsign) {
 

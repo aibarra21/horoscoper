@@ -15,3 +15,6 @@ A horoscope string
 \description{
 Tells a daily horoscope
 }
+\examples{
+getdailyhoroscope("Aries")
+}
