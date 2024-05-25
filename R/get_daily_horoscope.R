@@ -5,10 +5,9 @@
 #' @importFrom rvest read_html html_node html_text
 #' @importFrom stringr str_replace_all str_trim
 #' @return A horoscope string
+#' @export
 #'
-
-library(dplyr)
-# function that prints out the sign and horoscope that is wanted
+#' function that prints out the sign and horoscope that is wanted
 
 getdailyhoroscope <- function(zodiacsign) {
 
