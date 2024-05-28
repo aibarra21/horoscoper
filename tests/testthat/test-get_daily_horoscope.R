@@ -12,5 +12,5 @@ test_that("getdailyhoroscope prints correct horoscope", {
   expect_output(getdailyhoroscope("Aries"), "Sign: Aries \nDaily Horoscope: Today is a good day.") # Adjusted expected output
 
   # Test invalid zodiac sign
-  expect_output(getdailyhoroscope("invalid"), "Invalid zodiac sign. Please capatilize and try again.")
+  expect_output(getdailyhoroscope("invalid"), "Invalid zodiac sign. Please ensure correct spelling and try again.")
 })

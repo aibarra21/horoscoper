@@ -17,16 +17,16 @@ get_sign_traits <- function(zodiac) {
   signdf <- sign_traits(zodiac) # running helperfunc to webscrape
 
   #printing the zodiac information
-  cat("Sign:", stringr::str_to_title(zodiac),
-      "\nSymbol:", signdf$symbol,
-      "\nLucky Gem:",signdf$luckygem,
-      "\nFlower:", signdf$flower,
-      "\nYou are described as", signdf$traits,
-      "\nYou are most compatible with", signdf$top_match,
-      "\nMotto:", signdf$motto)
+  output <- glue::glue("
+    Sign: {stringr::str_to_title(zodiac)}
+    Symbol: {signdf$symbol}
+    Lucky Gem: {signdf$luckygem}
+    Flower: {signdf$flower}
+    You are described as {signdf$traits}
+    You are most compatible with {signdf$top_match}.
+    Motto: {signdf$motto}" )
+  return(output)
 }
-
-
 
 # helper function that webscrapes horoscope.com and stores the zodiac info
 sign_traits <- function(zodiac) {
@@ -39,7 +39,8 @@ sign_traits <- function(zodiac) {
   symbol <- sign_link %>%
     rvest::html_node(".title h4") %>%
     rvest::html_text(trim = TRUE)
-  symbol <- stringr::str_split(symbol, "\\|", simplify = TRUE)
+  symbol <- stringr::str_split(symbol, "\\|", simplify=TRUE)
+  symbol <- str_trim(symbol[1])
 
   # getting the gem info
   luckygem <- sign_link %>%
@@ -70,8 +71,13 @@ sign_traits <- function(zodiac) {
     rvest::html_text(trim = T)
 
   # storing info into a dataframe
-  sign_info <- data.frame(sign, symbol[1], luckygem, flower,
-                          traits, top_match, motto)
+  sign_info <- data.frame(zodiac = zodiac,
+                          symbol = symbol[1],
+                          luckygem = luckygem,
+                          flower = flower,
+                          traits = traits,
+                          top_match = top_match,
+                          motto = motto,
+                          stringsAsFactors = FALSE)
   return(sign_info)
 }
-
