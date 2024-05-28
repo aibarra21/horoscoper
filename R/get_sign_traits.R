@@ -6,6 +6,22 @@
 #' @export
 
 
+
+get_sign_traits <- function(zodiacsign) {
+
+  signdf <- sign_traits(zodiacsign)
+
+  cat("Sign:", stringr::str_to_title(zodiacsign),
+      "\nSymbol:", signdf$symbol,
+      "\nLucky Gem:",signdf$luckygem,
+      "\nFlower:", signdf$flower,
+      "\nYou are described as", signdf$traits,
+      "\nYou are most compatible with", signdf$top_match,
+      "\nMotto:", signdf$motto)
+
+}
+
+
 sign_traits <- function(zodiacsign) {
 
   url <- paste0("https://www.horoscope.com/zodiac-signs/", zodiacsign)
@@ -44,4 +60,3 @@ sign_traits <- function(zodiacsign) {
   return(sign_info)
 }
 
-sign_traits("taurus")
