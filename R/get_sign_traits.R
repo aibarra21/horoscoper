@@ -1,17 +1,25 @@
 #' Tells a daily horoscope
 #'
-#' @param
+#' @param zodiac the person's zodiac sign
+#'
 #' @importFrom rvest read_html html_node html_text
-#' @return
+#' @importFrom stringr str_split str_remove str_to_title
+#'
+#' @return A string with all sign information
+#'
 #' @export
+#'
+#' @examples
+#' get_sign_traits("aries)
 
 
 
-get_sign_traits <- function(zodiacsign) {
+get_sign_traits <- function(zodiac) {
+  zodiac <- tolower(zodiac)
 
-  signdf <- sign_traits(zodiacsign)
+  signdf <- sign_traits(zodiac)
 
-  cat("Sign:", stringr::str_to_title(zodiacsign),
+  cat("Sign:", stringr::str_to_title(zodiac),
       "\nSymbol:", signdf$symbol,
       "\nLucky Gem:",signdf$luckygem,
       "\nFlower:", signdf$flower,
@@ -21,10 +29,9 @@ get_sign_traits <- function(zodiacsign) {
 
 }
 
+sign_traits <- function(zodiac) {
 
-sign_traits <- function(zodiacsign) {
-
-  url <- paste0("https://www.horoscope.com/zodiac-signs/", zodiacsign)
+  url <- paste0("https://www.horoscope.com/zodiac-signs/", zodiac)
   sign_link <- rvest::read_html(url)   # reading the url
 
   symbol <- sign_link %>%
