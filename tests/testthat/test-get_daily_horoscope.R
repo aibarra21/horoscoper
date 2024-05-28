@@ -1,16 +1,47 @@
-mock_horoscope_data <- data.frame(
-  sign = c("Aries", "Taurus"),
-  horoscope = c("Today is a good day.", "Today is a lucky day.")
-)
+test_that("getdailyhoroscope(aries) returns a string starting with today's date", {
+  # Call the function
+  result <- getdailyhoroscope("aries")
 
-# Mock the getdailyhoroscope function
-test_that("getdailyhoroscope prints correct horoscope", {
-  # Mock the horoscope_data
-  assignInNamespace("horoscope_data", mock_horoscope_data, ns = asNamespace("horoscoper"))
+  date_pattern <- "\\b[A-Z][a-z]+ \\d{1,2}, \\d{4}\\b"
 
-  # Test valid zodiac sign
-  expect_output(getdailyhoroscope("Aries"), "Sign: Aries \nDaily Horoscope: Today is a good day.") # Adjusted expected output
+  # Extract the date string
+  date_string <- stringr::str_extract(result, date_pattern)
 
-  # Test invalid zodiac sign
-  expect_output(getdailyhoroscope("invalid"), "Invalid zodiac sign. Please ensure correct spelling and try again.")
+  # Convert to Date object
+  date <- lubridate::mdy(date_string)
+
+  # Convert to Date object
+  date_result <- lubridate::ymd(date)
+
+  # Check if the date part is today
+  expect_equal(date_result, lubridate::today())
+})
+
+test_that("getdailyhoroscope(taurus) returns a string starting with today's date", {
+  # Call the function
+  result <- getdailyhoroscope("Taurus")
+
+  date_pattern <- "\\b[A-Z][a-z]+ \\d{1,2}, \\d{4}\\b"
+
+  # Extract the date string
+  date_string <- stringr::str_extract(result, date_pattern)
+
+  # Convert to Date object
+  date <- lubridate::mdy(date_string)
+
+  # Convert to Date object
+  date_result <- lubridate::ymd(date)
+
+  # Check if the date part is today
+  expect_equal(date_result, lubridate::today())
+})
+
+test_that("getdailyhoroscope() returns invalid string when misspell", {
+
+  correct <- "Invalid zodiac sign. Please ensure correct spelling and try again."
+
+  expected <- getdailyhoroscope("Tarus")
+
+  # Check if the date part is today
+  expect_equal(expected, correct)
 })

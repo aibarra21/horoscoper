@@ -14,14 +14,15 @@ getdailyhoroscope <- function(zodiacsign) {
 
   if (zodiacsign %in% horoscope_data$sign) {
     daily <- horoscope_data[horoscope_data$sign == zodiacsign, "horoscope"]
-    cat("Sign:", stringr::str_to_title(zodiacsign), "\nDaily Horoscope:", daily) #prints wanted sign and horoscope
+    output<- glue::glue("Sign: {stringr::str_to_title(zodiacsign)}
+               Daily Horoscope: {daily}" ) #prints wanted sign and horoscope
+    return(output)
   }
 
   else {
-    cat("Invalid zodiac sign. Please ensure correct spelling and try again.")  #if spelled wrong or capitalized then print error
+    return("Invalid zodiac sign. Please ensure correct spelling and try again.")  #if spelled wrong or capitalized then print error
   }
 }
-
 
 
 # helper function to get only one horoscope by webscrapping horoscope.com
