@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_sign_traits.R
 \name{get_sign_traits}
 \alias{get_sign_traits}
-\title{Tells a daily horoscope}
+\title{Tells sign traits}
 \usage{
 get_sign_traits(zodiac)
 }
@@ -13,5 +13,8 @@ get_sign_traits(zodiac)
 A string with all sign information
 }
 \description{
-Tells a daily horoscope
+Tells sign traits
+}
+\examples{
+get_sign_traits("aries")
 }

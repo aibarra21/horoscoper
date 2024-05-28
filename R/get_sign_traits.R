@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' get_sign_traits("aries)
+#' get_sign_traits("aries")
 
 
 # function that prints out the zodiac sign trait information
