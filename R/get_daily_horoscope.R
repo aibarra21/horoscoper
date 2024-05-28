@@ -10,14 +10,15 @@
 #' getdailyhoroscope("Aries")
 
 getdailyhoroscope <- function(zodiacsign) {
+   zodiacsign <- tolower(zodiacsign)
 
   if (zodiacsign %in% horoscope_data$sign) {
     daily <- horoscope_data[horoscope_data$sign == zodiacsign, "horoscope"]
-    cat("Sign:", zodiacsign, "\nDaily Horoscope:", daily) #prints wanted sign and horoscope
+    cat("Sign:", stringr::str_to_title(zodiacsign), "\nDaily Horoscope:", daily) #prints wanted sign and horoscope
   }
 
   else {
-    cat("Invalid zodiac sign. Please capatilize and try again.")  #if spelled wrong or capitalized then print error
+    cat("Invalid zodiac sign. Please ensure correct spelling and try again.")  #if spelled wrong or capitalized then print error
   }
 }
 
@@ -34,6 +35,7 @@ get_onedaily_horoscope <- function(page_number){
     rvest::html_node("h1") %>%
     rvest::html_text(trim = TRUE)
   sign <- stringr::str_replace_all(sign, "Horoscope", "") #trimming excess words
+  sign <- tolower(sign)
 
   daily_horoscope <- sign_link %>%        # reading in the daily horoscope
     rvest::html_node(".switcher+ p") %>%
