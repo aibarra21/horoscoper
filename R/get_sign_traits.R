@@ -2,10 +2,9 @@
 #'
 #' @param zodiac the person's zodiac sign
 #' @importFrom rvest read_html html_node html_text
-#' @importFrom stringr str_split str_remove str_to_title
+#' @importFrom stringr str_split str_remove str_to_title str_trim
 #' @return A string with all sign information
 #' @export
-#'
 #' @examples
 #' get_sign_traits("aries")
 
@@ -40,7 +39,7 @@ sign_traits <- function(zodiac) {
     rvest::html_node(".title h4") %>%
     rvest::html_text(trim = TRUE)
   symbol <- stringr::str_split(symbol, "\\|", simplify=TRUE)
-  symbol <- str_trim(symbol[1])
+  symbol <- stringr::str_trim(symbol[1])
 
   # getting the gem info
   luckygem <- sign_link %>%
@@ -72,7 +71,7 @@ sign_traits <- function(zodiac) {
 
   # storing info into a dataframe
   sign_info <- data.frame(zodiac = zodiac,
-                          symbol = symbol[1],
+                          symbol = symbol,
                           luckygem = luckygem,
                           flower = flower,
                           traits = traits,

@@ -1,0 +1,64 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# Horoscoper
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of **horoscoper** is to provide detailed information about zodiac signs and horoscopes.  
+This package uses webscrapping to get the horoscope information from [horoscope.com](https://www.horoscope.com/us/index.aspx).
+
+## Installation
+
+You can install the the development version from [GitHub](https://github.com/) with:
+
+```{r}
+# install.packages("devtools")
+devtools::install_github("aibarra21/horoscoper")
+```
+
+
+```{r}
+library(horoscoper)
+```
+
+## Zodiac Sign
+
+You can use the function get_zodiac_sign() to determine what zodiac sign
+you are by entering your birthday. Enter the month, day, then year in any format.
+
+```{r}
+get_zodiac_sign("april 24 2002")
+```
+
+You can use the function get_sign_traits() to determine traits and characteristics of your sign.
+```{r}
+get_sign_traits("taurus")
+```
+## Daily Horoscope
+
+You can use the function getdailyhoroscope() to get your daily horoscope for your zodiac. This function updates daily.
+
+```{r}
+getdailyhoroscope("taurus")
+```
+## Compatability
+
+You can use the function compatibility() to determine how compatibile any two zodian signs are.
+```{r}
+# compatibility()
+```
+
