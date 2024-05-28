@@ -1,4 +1,4 @@
-#' Tells a daily horoscope
+#' Tells sign traits
 #'
 #' @param zodiac the person's zodiac sign
 #' @importFrom rvest read_html html_node html_text
