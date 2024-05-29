@@ -11,11 +11,17 @@
 
 # function that prints out the zodiac sign trait information
 get_sign_traits <- function(zodiac) {
-  zodiac <- tolower(zodiac) # making the zodiac lowercase
 
-  signdf <- sign_traits(zodiac) # running helperfunc to webscrape
+  correct_signs <- c("aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces")
 
-  #printing the zodiac information
+  zodiac <- tolower(zodiac) # Convert input to lowercase
+
+  # Check if the zodiac sign is valid
+
+  if (zodiac %in% correct_signs) {   # Check if the zodiac sign is spelled right
+
+  signdf <- sign_traits(zodiac)  # Run helper function to web scrape
+
   output <- glue::glue("
     Sign: {stringr::str_to_title(zodiac)}
     Symbol: {signdf$symbol}
@@ -24,10 +30,16 @@ get_sign_traits <- function(zodiac) {
     You are described as {signdf$traits}
     You are most compatible with {signdf$top_match}.
     Motto: {signdf$motto}" )
+
   return(output)
+
+  } else {
+    # Return error for misspelled zodiac sign
+    return("Invalid Zodiac Sign entered. Please check for correct spelling.")
+  }
 }
 
-# helper function that webscrapes horoscope.com and stores the zodiac info
+# helper function that web scrapes horoscope.com and stores the zodiac info
 sign_traits <- function(zodiac) {
 
   # reading in the url to webscrape from
@@ -80,3 +92,5 @@ sign_traits <- function(zodiac) {
                           stringsAsFactors = FALSE)
   return(sign_info)
 }
+
+
