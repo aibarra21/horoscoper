@@ -4,7 +4,7 @@
 \alias{compatibility}
 \title{This function, given user input of two zodiac signs, gives someone their romantic compatibility score and a description of their compatibility with another sign}
 \usage{
-compatibility(sign1, sign2)
+compatibility(your_sign, their_sign)
 }
 \arguments{
 \item{your_sign}{The person's sign}
