@@ -20,14 +20,13 @@ compatibility <- function(sign1, sign2) {
 
   #Test for Signs in Matched Rows and return message
 
-
   if (sign1 %in% comp_data$sign_items1 || sign2 %in% comp_data$sign_items2){
     matched_row <- comp_data %>%
-      filter(sign_items1 == sign_items2 & sign_items2 == sign_items2)
+      filter(sign_items1 == sign1 & sign_items2 == sign2)
 
     if (nrow(matched_row) > 0){
       cat("Romantic Compatibility between", sign1, "and", sign2, ":\n")
-      cat("Compatibility Score out of 10:", matched_row$percent, "\n")
+      cat("Compatibility Score out of 10:", matched_row$compatibility_score, "\n")
       cat("Description:", matched_row$selected_description, "\n")
     }
 
@@ -73,7 +72,7 @@ scrape_comp_page <- function(sign_number, sign_number2) {
   # Return compatibility info
 
   compatibility_info <- data.frame(sign_items1, sign_items2, compatibility_score, compatibility_desc)
-  names(compatibility_info) <- c("sign_items1", "sign_items2", "compatibility_score", "selected_description")
+  names(compatibility_info) <- c("sign1", "sign2", "compatibility_score", "selected_description")
   return(compatibility_info)
 
 }

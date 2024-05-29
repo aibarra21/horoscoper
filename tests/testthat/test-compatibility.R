@@ -19,4 +19,3 @@ test_that("compatibility function is case-sensitive", {
   expect_equal(result, "Invalid Zodiac Signs entered. Please check for correct spelling and capitalization.\n")
 })
 
-
