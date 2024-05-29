@@ -57,7 +57,7 @@ getdailyhoroscope("taurus")
 ```
 ## Compatability
 
-You can use the function compatibility() to determine how compatibile any two zodian signs are.
+You can use the function compatibility() to determine how compatible any two zodiac signs are.
 ```{r}
 compatibility("taurus","aries")
 ```
