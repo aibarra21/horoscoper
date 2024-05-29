@@ -1,4 +1,5 @@
 library(lubridate)
+library(rvest)
 
 
 url <- "https://www.horoscope.com/us/index.aspx"
@@ -80,4 +81,36 @@ get_zodiac_sign <- function(user_date){
 
 
 
+url <- "https://www.horoscope.com/us/index.aspx"
+
+website <- read_html(url)
+
+get_sign_traits <- function(url) {
+
+  sign <- website |>
+    html_nodes(".grid-6 a h3") |>
+    html_elements("a") |>
+    html_attr("href")
+
+  return(sign)
+
+}
+get_sign_traits(url)
+
+
+
+url <- "https://www.cheese.com/alphabetical" #This is the url for the alphabetical list of all the cheeses on the site
+
+# Read the HTML content from the webpage
+webpage <- read_html(url)
+
+cheese_data <- webpage %>%
+  html_nodes(".cheese-item h3") %>%
+  html_nodes("a") %>%
+  html_attr("href") %>%
+  paste0("https://cheese.com", .)
+
+cheese_names <- webpage %>%
+  html_nodes(".cheese-item h3") %>%
+  html_text()
 
