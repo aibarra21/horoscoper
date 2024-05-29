@@ -8,18 +8,11 @@
 #capitalization and spelling important: first letter of sign is capitalized
 
 #' @return A compatibility message string from webscraped website
-#' @importFrom(rvest,html_node)
-#' @importFrom(rvest,html_text)
-#' @importFrom(rvest,read_html)
-#' @importFrom(stringr,str_remove)
-#' @importFrom(stringr,str_trim)
-#' @importFrom(tidyverse,rbind)
+#' @import rvest
+#' @import stringr
+#' @import tidyverse
 #' @export
 
-
-
-library(rvest)
-library(stringr)
 
 #Main Compatibility Function
 
