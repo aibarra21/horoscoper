@@ -1,47 +1,39 @@
 #' This function, given user input of two zodiac signs, gives someone their romantic compatibility score and a description of their compatibility with another sign
 #' @param your_sign The person's sign
 #' @param their_sign The other person's sign
+#' @importFrom rvest read_html html_node html_text
+#' @importFrom stringr str_replace_all str_trim str_to_title
 #' @return A compatibility message string from webscraped website
-#' @import rvest
-#' @import stringr
+#'
 #' @export
+
 
 
 #Main Compatibility Function
 
 compatibility <- function(your_sign, their_sign) {
+  # Convert signs to title case
+  your_sign <- stringr::str_to_title(your_sign)
+  their_sign <- stringr::str_to_title(their_sign)
 
-  your_sign <- str_to_title(your_sign)
-  their_sign <- str_to_title(their_sign)
 
-
-  #Test for Signs in Matched Rows and return message
-
+  # Check if the signs exist in comp_data
   if (your_sign %in% comp_data$sign1 & their_sign %in% comp_data$sign2) {
-
-   matched_row <- comp_data %>%
-      filter(sign1 %like% your_sign & sign2 %like% their_sign)
+    # Find the matched row
+    matched_row <- comp_data %>%
+      filter(sign1 == your_sign & sign2 == their_sign)
 
     if (nrow(matched_row) > 0) {
-
-      result <- glue::glue("Romantic Compatibility between ", your_sign, " and ", their_sign, ":   " ,"\n",
-                      "Compatibility Score: ", matched_row$compatibility_score, "\n" ,
-                      "Description: ", matched_row$selected_description, "\n")
-
+      # Construct the result message
+      result <- glue::glue("Romantic Compatibility between {your_sign} and {their_sign}:
+                            Compatibility Score: {matched_row$compatibility_score}
+                            Description: {matched_row$selected_description}")
       return(result)
     }
-
-   else {
-
-    return(result <- "Invalid Zodiac Signs entered. Please check for correct spelling and punctuation")
-    }
-  }
-
-  else {
-    return(result <- "Invalid Zodiac Signs entered. Please check for correct spelling and punctuation")
+  } else {
+    return("Invalid Zodiac Signs entered. Please check for correct spelling and punctuation")
   }
 }
-
 
 
 
@@ -57,24 +49,24 @@ scrape_comp_page <- function(sign_number, sign_number2) {
   #Define compatibility items from website
 
   sign_items1 <- webpage %>%
-    html_nodes(".flex-center-inline div:nth-child(1) h3") %>%
-    html_text(trim = FALSE)
+    rvest::html_nodes(".flex-center-inline div:nth-child(1) h3") %>%
+    rvest::html_text(trim = FALSE)
 
   sign_items2 <- webpage %>%
-    html_nodes(".icon-heart + div h3") %>%
-    html_text(trim = FALSE)
+    rvest::html_nodes(".icon-heart + div h3") %>%
+    rvest::html_text(trim = FALSE)
 
   compatibility_score <- webpage %>%
-    html_node("b") %>%
-    html_text(trim = TRUE)
+    rvest::html_node("b") %>%
+    rvest::html_text(trim = TRUE)
 
   compatibility_desc <- webpage %>%
-    html_node(".text-center p") %>%
-    html_text(trim = TRUE)
+    rvest::html_node(".text-center p") %>%
+    rvest::html_text(trim = TRUE)
 
   # Extract first five rows of the description using another helper function
 
-  compatibility_desc <- extract_description(compatibility_desc, n = 5)
+  compatibility_desc <- extract_description(compatibility_desc, n = 8)
 
   # Return compatibility info
 
