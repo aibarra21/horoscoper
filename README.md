@@ -20,7 +20,7 @@ You can install the the development version from
 # install.packages("devtools")
 devtools::install_github("aibarra21/horoscoper")
 #> Using GitHub PAT from the git credential store.
-#> Skipping install of 'horoscoper' from a github remote, the SHA1 (d287ed5c) has not changed since last install.
+#> Skipping install of 'horoscoper' from a github remote, the SHA1 (cc5a2f87) has not changed since last install.
 #>   Use `force = TRUE` to force installation
 ```
 
@@ -60,15 +60,18 @@ for your zodiac. This function updates daily.
 
 ``` r
 getdailyhoroscope("taurus")
-#> Sign: Taurus 
-#> Daily Horoscope: May 28, 2024 - Make sure there's an equal amount of give and take in your day, Taurus. Sometimes when you love someone, you just want to keep giving and giving to demonstrate your incredible love. Be sure that you aren't draining yourself of valuable energy that you need for yourself, because maintaining your health is absolutely critical now. Also be sure that the people on the receiving end are also giving their fair share in return.
+#> Sign: Taurus
+#> Daily Horoscope: May 29, 2024 - Your wacky personality will be appreciated today, Taurus, but don't take it too far. Leave room for seriousness to enter the picture. There's a dreamy, cloudy sensation to the day that might make it difficult for you to concentrate on any one thing. If you pretend to know the answer when you don't, you'll only confuse the people who rely on your knowledge or authority. Respect that everyone wants answers these days.
 ```
 
 ## Compatability
 
-You can use the function compatibility() to determine how compatibile
-any two zodian signs are.
+You can use the function compatibility() to determine how compatible any
+two zodiac signs are.
 
 ``` r
-# compatibility()
+compatibility("taurus","aries")
+#> Romantic Compatibility between Taurus and Aries:
+#> Compatibility Score: 4/10
+#> Description: The Bull and the Ram are a hot-and-heavy couple from the start as each sign is sensual and passionate, which creates fireworks in bed.  However, there isn’t much going for the pairing.  The fiery temper of Aries clashes with the stubborn patience of Taurus, making fights a standoff.  Aries seeks change while Taurus craves routine.  Being one sign apart, they couldn’t be more different in terms of temperament and life views. Despite their glaring differences, the start of an Aries/Taurus paring is a beautiful thing: gushing compliments, gifts, vibrant conversation, and utter devotion.  As ambitious people, Taurus can help keep Aries steady and grounded while Aries can push the Bull to dream bigger.  Aries boldly seeks adventure and Taurus gives them a solid plan on how to get there—and a beautiful home to come back to.
 ```
