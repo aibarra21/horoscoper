@@ -4,9 +4,18 @@ test_that("get_sign_traits works", {
 
   my_result <- get_sign_traits("aries")
 
-  print(my_result)
 
   expect_equal(my_result, correct_result)
 
 })
 
+test_that("get_sign_traits works", {
+
+  correct_result <- "Invalid Zodiac Sign entered. Please check for correct spelling."
+
+  my_result <- get_sign_traits("asries")
+
+
+  expect_equal(my_result, correct_result)
+
+})
