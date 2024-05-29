@@ -16,27 +16,29 @@
 
 #Main Compatibility Function
 
-compatibility <- function(sign1, sign2) {
+compatibility <- function(your_sign, their_sign) {
 
   #Test for Signs in Matched Rows and return message
 
-  if (sign1 %in% comp_data$sign_items1 || sign2 %in% comp_data$sign_items2){
-    matched_row <- comp_data %>%
-      filter(sign_items1 == sign1 & sign_items2 == sign2)
+   matched_row <- comp_data %>%
+      filter(sign1 == as.factor(your_sign) || sign2 == as.factor(their_sign))
 
-    if (nrow(matched_row) > 0){
-      cat("Romantic Compatibility between", sign1, "and", sign2, ":\n")
-      cat("Compatibility Score out of 10:", matched_row$compatibility_score, "\n")
-      cat("Description:", matched_row$selected_description, "\n")
+    if (nrow(matched_row) > 0) {
+
+      result <- paste0("Romantic Compatibility between", your_sign, "and", their_sign, ":\n",
+                      "Compatibility Score out of 10:", matched_row$compatibility_score, "\n",
+                      "Description:", matched_row$selected_description, "\n")
+
+      return(result)
     }
 
-    # Account for user error
-
-    else {
-      cat("Invalid Zodiac Signs entered. Please check for correct spelling and capitalization.\n")
+   else {
+    return("Invalid Zodiac Signs entered. Please check for correct spelling and capitalization.\n")
     }
   }
-}
+
+compatibility("Taurus","Aries")
+
 
 #Helper Function for Websraping horoscope website
 
@@ -44,7 +46,7 @@ scrape_comp_page <- function(sign_number, sign_number2) {
 
 
   url <- paste0("https://www.horoscope.com/us/games/compatibility/game-love-compatibility.aspx?ZodiacSignSelector_alphastring=", sign_number, "&PartnerZodiacSignSelector_alphastring=", sign_number2) #consider all sign pages
-  webpage <- read_html(url)
+  webpage <- rvest::read_html(url)
 
 
   #Define compatibility items from website
@@ -83,6 +85,9 @@ extract_description <- function(text, n){
   sentences <- stringr::str_extract_all(text, "(.*?[.!])", simplify = TRUE)[1:n]
   return(paste(sentences, collapse = " "))
 }
+
+
+scrape_comp_page("0","1")
 
 #Create final data frame
 
