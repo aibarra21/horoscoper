@@ -1,16 +1,9 @@
 #' This function, given user input of two zodiac signs, gives someone their romantic compatibility score and a description of their compatibility with another sign
-
 #' @param your_sign The person's sign
 #' @param their_sign The other person's sign
-
-# Gives user prompt for inputs with instructions
-#Gives response message if user error with input
-#capitalization and spelling important: first letter of sign is capitalized
-
 #' @return A compatibility message string from webscraped website
 #' @import rvest
 #' @import stringr
-#' @import tidyverse
 #' @export
 
 
@@ -18,26 +11,38 @@
 
 compatibility <- function(your_sign, their_sign) {
 
+  your_sign <- str_to_title(your_sign)
+  their_sign <- str_to_title(their_sign)
+
+
   #Test for Signs in Matched Rows and return message
 
+  if (your_sign %in% comp_data$sign1 & their_sign %in% comp_data$sign2) {
+
    matched_row <- comp_data %>%
-      filter(sign1 == as.factor(your_sign) || sign2 == as.factor(their_sign))
+      filter(sign1 %like% your_sign & sign2 %like% their_sign)
 
     if (nrow(matched_row) > 0) {
 
-      result <- paste0("Romantic Compatibility between", your_sign, "and", their_sign, ":\n",
-                      "Compatibility Score out of 10:", matched_row$compatibility_score, "\n",
-                      "Description:", matched_row$selected_description, "\n")
+      result <- glue::glue("Romantic Compatibility between ", your_sign, " and ", their_sign, ":   " ,"\n",
+                      "Compatibility Score: ", matched_row$compatibility_score, "\n" ,
+                      "Description: ", matched_row$selected_description, "\n")
 
       return(result)
     }
 
    else {
-    return("Invalid Zodiac Signs entered. Please check for correct spelling and capitalization.\n")
+
+    return(result <- "Invalid Zodiac Signs entered. Please check for correct spelling and punctuation")
     }
   }
 
-compatibility("Taurus","Aries")
+  else {
+    return(result <- "Invalid Zodiac Signs entered. Please check for correct spelling and punctuation")
+  }
+}
+
+
 
 
 #Helper Function for Websraping horoscope website
@@ -67,9 +72,9 @@ scrape_comp_page <- function(sign_number, sign_number2) {
     html_node(".text-center p") %>%
     html_text(trim = TRUE)
 
-  # Extract first eight rows of the description using another helper function
+  # Extract first five rows of the description using another helper function
 
-  extract_description(compatibility_desc, n = 8)
+  compatibility_desc <- extract_description(compatibility_desc, n = 5)
 
   # Return compatibility info
 
@@ -87,7 +92,7 @@ extract_description <- function(text, n){
 }
 
 
-scrape_comp_page("0","1")
+
 
 #Create final data frame
 
