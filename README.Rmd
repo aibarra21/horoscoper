@@ -59,6 +59,6 @@ getdailyhoroscope("taurus")
 
 You can use the function compatibility() to determine how compatibile any two zodian signs are.
 ```{r}
-# compatibility()
+compatibility("taurus","aries")
 ```
 

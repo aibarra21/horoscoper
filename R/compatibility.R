@@ -3,6 +3,7 @@
 #' @param their_sign The other person's sign
 #' @importFrom rvest read_html html_node html_text
 #' @importFrom stringr str_replace_all str_trim str_to_title
+#' @import dplyr
 #' @return A compatibility message string from webscraped website
 #'
 #' @export
@@ -21,7 +22,7 @@ compatibility <- function(your_sign, their_sign) {
   if (your_sign %in% comp_data$sign1 & their_sign %in% comp_data$sign2) {
     # Find the matched row
     matched_row <- comp_data %>%
-      filter(sign1 == your_sign & sign2 == their_sign)
+    filter(sign1 == your_sign & sign2 == their_sign)
 
     if (nrow(matched_row) > 0) {
       # Construct the result message
@@ -70,7 +71,7 @@ scrape_comp_page <- function(sign_number, sign_number2) {
 
   # Return compatibility info
 
-  compatibility_info <- data.frame(sign_items1, sign_items2, compatibility_score, compatibility_desc)
+  compatibility_info <- data.frame(sign_items1, sign_items2, compatibility_score, compatibility_desc, stringsAsFactors = FALSE)
   names(compatibility_info) <- c("sign1", "sign2", "compatibility_score", "selected_description")
   return(compatibility_info)
 
@@ -88,7 +89,8 @@ extract_description <- function(text, n){
 
 #Create final data frame
 
-comp_data <- data.frame(signs = character(),
+comp_data <- data.frame(sign1 = character(),
+                        sign2 = character(),
                         compatibility_score = character(),
                         selected_description = character(),
                         stringsAsFactors = FALSE)
