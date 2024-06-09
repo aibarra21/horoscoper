@@ -10,11 +10,16 @@
 
 get_zodiac_sign <- function(user_date){
 
+  #This converts the user inputted date using the mdy() function from lubridate
+  #and saves it to a "date" variable
   date <- lubridate::mdy(user_date)
 
+  #This extracts the month and day from the date variable
   month <- lubridate::month(date)
   day <- lubridate::day(date)
 
+  #Determines the zodiac sign based off of the month and day variables
+  #and returns the user's zodiac sign
   if((month == 1 && day >= 20 || month == 2 && day <= 18))
     return("Your zodiac sign is Aquarius")
 
