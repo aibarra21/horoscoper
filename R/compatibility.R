@@ -79,9 +79,17 @@ scrape_comp_page <- function(sign_number, sign_number2) {
 
 #Helper function for extracting compatibility description
 
-extract_description <- function(text, n){
-  sentences <- stringr::str_extract_all(text, "(.*?[.!])", simplify = TRUE)[1:n]
-  return(paste(sentences, collapse = " "))
+extract_description <- function(texts, n) {
+
+  extract_sentences <- function(text, n) {
+    sentences <- stringr::str_extract_all(text, "(.*?[.!?])", simplify = TRUE)[1:n]
+    return(paste(sentences, collapse = " "))
+  }
+
+  # Apply the helper function to each element in the input vector 'texts'
+  descriptions <- sapply(texts, extract_sentences, n = n)
+
+  return(descriptions)
 }
 
 
