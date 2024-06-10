@@ -3,7 +3,7 @@
 #' @param their_sign The other person's sign
 #' @importFrom rvest read_html html_node html_text
 #' @importFrom stringr str_replace_all str_trim str_to_title
-#' @import dplyr
+#' @import tidyverse
 #' @return A compatibility message string from webscraped website
 #'
 #' @export
@@ -12,29 +12,39 @@
 
 #Main Compatibility Function
 
-compatibility <- function(your_sign, their_sign) {
+compatibility <- function(your_signs, their_signs) {
+
   # Convert signs to title case
-  your_sign <- stringr::str_to_title(your_sign)
-  their_sign <- stringr::str_to_title(their_sign)
 
+  your_signs <- stringr::str_to_title(your_signs)
+  their_signs <- stringr::str_to_title(their_signs)
 
-  # Check if the signs exist in comp_data
-  if (your_sign %in% comp_data$sign1 & their_sign %in% comp_data$sign2) {
-    # Find the matched row
-    matched_row <- comp_data %>%
-    filter(sign1 == your_sign & sign2 == their_sign)
+  # Create a data frame of inputted signs
+  input_data <- data.frame(your_sign = your_signs, their_sign = their_signs, stringsAsFactors = FALSE)
 
-    if (nrow(matched_row) > 0) {
-      # Construct the result message
-      result <- glue::glue("Romantic Compatibility between {your_sign} and {their_sign}:
-                            Compatibility Score: {matched_row$compatibility_score}
-                            Description: {matched_row$selected_description}")
-      return(result)
-    }
-  } else {
-    return("Invalid Zodiac Signs entered. Please check for correct spelling and punctuation")
-  }
+  # Merge input data with comp_data and find matches
+  merged_data <- input_data %>%
+    left_join(comp_data, by = c("your_sign" = "sign1", "their_sign" = "sign2"))
+
+  # result message
+
+  result <- merged_data %>%
+    mutate(result_message = ifelse(!is.na(compatibility_score),
+                                   glue("Romantic Compatibility between {your_sign} and {their_sign}:
+                                         Compatibility Score: {compatibility_score}
+                                         Description: {selected_description}"),
+                                   "Invalid Zodiac Signs entered. Please check for correct spelling and punctuation")) %>%
+    pull(result_message)
+
+  return(result)
+
 }
+
+# Example usage
+your_signs <- c("Aries", "Libra", "Cancer")
+their_signs <- c("Taurus", "Scorpio", "Gemini")
+compatibility(your_signs, their_signs)
+
 
 
 
