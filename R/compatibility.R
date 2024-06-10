@@ -30,7 +30,7 @@ compatibility <- function(your_signs, their_signs) {
 
   result <- merged_data %>%
     mutate(result_message = ifelse(!is.na(compatibility_score),
-                                   glue("Romantic Compatibility between {your_sign} and {their_sign}:
+                                   glue::glue("Romantic Compatibility between {your_sign} and {their_sign}:
                                          Compatibility Score: {compatibility_score}
                                          Description: {selected_description}"),
                                    "Invalid Zodiac Signs entered. Please check for correct spelling and punctuation")) %>%
