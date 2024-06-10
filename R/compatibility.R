@@ -40,13 +40,6 @@ compatibility <- function(your_signs, their_signs) {
 
 }
 
-# Example usage
-your_signs <- c("Aries", "Libra", "Cancer")
-their_signs <- c("Taurus", "Scorpio", "Gemini")
-compatibility(your_signs, their_signs)
-
-
-
 
 #Helper Function for Websraping horoscope website
 
